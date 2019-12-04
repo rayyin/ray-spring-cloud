@@ -1,0 +1,25 @@
+server:
+  port: 8761
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    hostname: 0.0.0.0
+    ip-address: #you dev server ip address#
+  client:
+    #registerWithEureka: false
+    #fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://username:password@${eureka.instance.ip-address}:${server.port}/eureka/,http://username:password@dev_replica_server_ip:${server.port}/eureka/
+    server:
+      enableSelfPreservation: true
+    healthcheck:
+      enabled: true
+
+spring:
+  application:
+    name: ray-cloud-eureka
+  security:
+    user:
+      name: #username
+      password: #password
