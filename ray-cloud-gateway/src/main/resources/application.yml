@@ -1,0 +1,56 @@
+server:
+  port: 8084
+
+spring:
+  cloud:
+    gateway:
+      locator:
+        enabled: true
+      routes:
+        - id: ray-cloud-app-example-provider
+          uri: lb://ray-cloud-app-example-provider
+          predicates:
+            - Path=/ray-cloud-api/v1/provider/**
+          filters:
+            - StripPrefix=3  #http://localhost:8084/ray-cloud-api/v1/provider/service-provider/v1/message
+        - id: ray-cloud-app-example-consumer
+          uri: lb://ray-cloud-app-example-consumer
+          predicates:
+            - Path=/ray-cloud-api/v1/consumer/**  #http://localhost:8084/ray-cloud-api/v1/consumer/service-consumer/v1/message
+          filters:
+            - StripPrefix=3
+  application:
+    name: ray-cloud-gateway
+
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://admin:admin@localhost:8761/eureka/
+    healthcheck:
+      enabled: true
+    lease:
+      duration: 5
+    registryFetchIntervalSeconds: 5
+  instance:
+    lease-renewal-interval-in-seconds: 5
+    lease-expiration-duration-in-seconds: 5
+    instance-id: ${spring.application.name}:${server.port}
+    prefer-ip-address: true
+    ip-address: 127.0.0.1
+  profiles:
+    active: dev
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
+
+
+
+

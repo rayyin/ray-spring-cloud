@@ -13,6 +13,9 @@
 
     <modules>
         <module>ray-cloud-eureka</module>
+        <module>ray-cloud-gateway</module>
+        <module>ray-cloud-app-example</module>
+        <module>ray-cloud-app-client</module>
     </modules>
 
     <properties>
@@ -20,7 +23,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <spring-boot.version>2.0.8.RELEASE</spring-boot.version>
         <spring-cloud.version>Finchley.SR2</spring-cloud.version>
-        <spring-platform-bom.version>Cairo-SR5</spring-platform-bom.version>
+        <spring-platform-bom.version>Cairo-SR7</spring-platform-bom.version>
         <springfox-swagger2.version>2.9.2</springfox-swagger2.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>

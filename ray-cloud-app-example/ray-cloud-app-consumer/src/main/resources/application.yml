@@ -1,0 +1,90 @@
+server:
+  port: 9082
+
+spring:
+  application:
+    name: ray-cloud-app-example-consumer
+  #zipkin:
+    #base-url: http://admin:admin@localhost:8991
+  cloud:
+    alibaba:
+      seata:
+        tx-service-group: raycloud_sample_tx_group
+  datasource:
+    url: jdbc:mysql://localhost:3306/ray_cloud?useUnicode=true&allowMultiQueries=true&useSSL=false
+    username: root
+    password: root
+    connectionProperties: config.decrypt=false;
+    driver-class-name: com.mysql.jdbc.Driver
+    filters: config
+    initialSize: 1
+    maxActive: 20
+    maxOpenPreparedStatements: 20
+    maxWait: 60000
+    minEvictableIdleTimeMillis: 300000
+    minIdle: 1
+    poolPreparedStatements: true
+    testOnBorrow: false
+    testOnReturn: false
+    testWhileIdle: true
+    timeBetweenEvictionRunsMillis: 60000
+    type: com.alibaba.druid.pool.DruidDataSource
+    validationQuery: select 'x'
+
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://admin:admin@localhost:8761/eureka/
+    healthcheck:
+      enabled: true
+    lease:
+      duration: 5
+  instance:
+    lease-renewal-interval-in-seconds: 5
+    lease-expiration-duration-in-seconds: 10
+    instance-id: ${spring.application.name}:${server.port}
+    prefer-ip-address: true
+    ip-address: 127.0.0.1
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 160000000
+  hystrix:
+    enabled: true
+
+ribbon:
+  ReadTimeout: 60000
+  ConnectTimeout: 60000
+  ServerListRefreshInterval: 5000
+
+hystrix:
+  command:
+    default:
+      circuitBreaker:
+        errorThresholdPercentage: 50
+        requestVolumeThreshold: 5
+        sleepWindowInMilliseconds: 5000
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 12000
+          timeout:
+            enabled: true
+      metrics:
+        rollingStats:
+          timeInMilliseconds: 10000
+  threadpool:
+    default:
