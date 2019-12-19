@@ -4,8 +4,8 @@ server:
 spring:
   application:
     name: ray-cloud-app-example-consumer
-  #zipkin:
-    #base-url: http://admin:admin@localhost:8991
+  zipkin:
+    base-url: http://admin:admin@localhost:8991
   cloud:
     alibaba:
       seata:

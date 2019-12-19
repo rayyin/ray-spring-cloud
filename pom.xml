@@ -16,6 +16,9 @@
         <module>ray-cloud-gateway</module>
         <module>ray-cloud-app-example</module>
         <module>ray-cloud-app-client</module>
+        <module>ray-cloud-zipkin</module>
+        <module>ray-cloud-administrator</module>
+        <module>ray-cloud-config</module>
     </modules>
 
     <properties>

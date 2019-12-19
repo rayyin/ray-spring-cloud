@@ -40,21 +40,4 @@ public class SwaggerController {
     public ResponseEntity<List<SwaggerResource>> swaggerResources() {
         return new ResponseEntity<>(swaggerProviderConfig.get(), HttpStatus.OK);
     }
-
-    /*@GetMapping("/configuration/security")
-    public Mono<ResponseEntity<SecurityConfiguration>> securityConfiguration() {
-        return Mono.just(new ResponseEntity<>(
-                Optional.ofNullable(securityConfiguration).orElse(SecurityConfigurationBuilder.builder().build()), HttpStatus.OK));
-    }
-
-    @GetMapping("/configuration/ui")
-    public Mono<ResponseEntity<UiConfiguration>> uiConfiguration() {
-        return Mono.just(new ResponseEntity<>(
-                Optional.ofNullable(uiConfiguration).orElse(UiConfigurationBuilder.builder().build()), HttpStatus.OK));
-    }
-
-    @GetMapping("")
-    public Mono<ResponseEntity> swaggerResources() {
-        return Mono.just((new ResponseEntity<>(swaggerProvider.get(), HttpStatus.OK)));
-    }*/
 }
