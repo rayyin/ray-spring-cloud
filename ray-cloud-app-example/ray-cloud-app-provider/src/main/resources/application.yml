@@ -10,6 +10,11 @@ spring:
     alibaba:
       seata:
         tx-service-group: raycloud_sample_tx_group
+    config:
+      label: master
+      name: config
+      profile: test
+      uri: http://localhost:8889/
   datasource:
     url: jdbc:mysql://localhost:3306/ray_cloud?useUnicode=true&allowMultiQueries=true&useSSL=false
     username: root

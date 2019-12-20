@@ -25,6 +25,21 @@ management:
     health:
       show-details: ALWAYS
 
+#git file
+spring:
+  application:
+    name: ray-cloud-config
+  cloud:
+    config:
+      label: master
+      server:
+        git:
+          uri: https://github.com/rayyin/ray-spring-cloud.git
+          search-paths: ray-cloud-config/config-properties    #http://localhost:8889/config/test
+          username:
+          password:
+
+#local file
 #spring:
 #  application:
 #    name: ray-cloud-config
@@ -35,16 +50,3 @@ management:
 #      server:
 #        native:
 #          search-locations: /opt/ray-cloud-config-file
-
-spring:
-  application:
-    name: ray-cloud-config
-  cloud:
-    config:
-      label: master
-      server:
-        git:
-          uri: https://github.com/rayyin/ray-spring-cloud.git
-          search-paths: ray-cloud-config/config-properties
-          username:
-          password:
